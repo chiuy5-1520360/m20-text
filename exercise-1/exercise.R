@@ -9,13 +9,15 @@ library(stringr)
 library(ggplot2)
 
 # Load booksinto a dataframe using the austen_books() function
-
+book.df <- austen_books()
 
 # How many books are in the dataset?
-
+book.df %>% select(book) %>% unique() %>% nrow()
 
 # Which book has the most lines?
-
+book.frq <- book.df %>% select(book) %>% table() %>% data.frame() 
+colnames(book.frq) <- c("book", "Freq")
+book.frq %>% filter(Freq == max(Freq)) %>% select(book)
 
 # Use the unnest_tokens function to generate the full list of words
 
